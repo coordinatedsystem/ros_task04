@@ -1,0 +1,8 @@
+TriggerIndex,FrameNum,PicPath,Code1,CodeType1,CodeCoordinate1,Code2,CodeType2,CodeCoordinate2,Code3,CodeType3,CodeCoordinate3,Code4,CodeType4,CodeCoordinate4,Code5,CodeType5,CodeCoordinate5,Code6,CodeType6,CodeCoordinate6
+1,1,1.jpg,hikvision092,CODE128,492.240.452.274.291.85.331.52,hikvision085,CODE128,568.597.532.632.367.461.403.427,hikvision0103,CODE128,997.162.961.196.813.42.849.9,hikvision097,CODE128,851.317.815.349.660.177.696.145,,,,,,
+1,2,2.jpg,333333,CODE128,974.77.1034.84.1023.173.963.166,,,,,,,,,,,,,,,
+2,3,3.jpg,hikvision092,CODE128,493.240.454.275.290.87.329.53,hikvision0100,CODE128,918.239.882.271.738.109.774.77,hikvision0103,CODE128,997.162.963.196.813.45.847.12,hikvision089,CODE128,419.302.381.341.204.166.242.128,,,,,,
+2,4,4.jpg,hikvision086,CODE128,338.392.316.415.140.243.162.220,RobotFrameWork,CODE128,1263.52.1287.72.1184.197.1160.177,2.3457E+15,ITF25,1191.693.1214.709.1105.869.1082.853,http://www.hikvision.com,DM,1223.209.1190.242.1221.273.1252.243,,,,,,
+3,5,5.jpg,,,,,,,,,,,,,,,,,,
+3,6,6.jpg,,,,,,,,,,,,,,,,,,
+4,7,7.jpg,hikvision086,CODE128,437.470.401.509.209.332.244.293,hikvision089,CODE128,491.390.453.428.266.247.304.208,http://www.hikvision.com,DM,1224.200.1182.192.1174.239.1216.246,,,,,,,,,

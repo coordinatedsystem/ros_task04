@@ -1,0 +1,55 @@
+In file included from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/logging.hpp:24[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/client.hpp:40[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/callback_group.hpp:24[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/any_executable.hpp:20[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategy.hpp:25[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategies.hpp:18[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executor_options.hpp:20[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executor.hpp:37[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executors/multi_threaded_executor.hpp:25[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executors.hpp:21[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:155[m[K,
+                 from [01m[K/home/coordsys/zbx/MVSROS_project/MVS_ROS2/hik_camera/include/hik_camera/hik_camera_driver.hpp:6[m[K,
+                 from [01m[K/home/coordsys/zbx/MVSROS_project/MVS_ROS2/hik_camera/src/hik_camera_driver.cpp:1[m[K:
+[01m[K/home/coordsys/zbx/MVSROS_project/MVS_ROS2/hik_camera/src/hik_camera_driver.cpp:[m[K In static member function ‘[01m[Kstatic void HikCameraDriver::onImageCallback(unsigned char*, MV_FRAME_OUT_INFO_EX*, void*)[m[K’:
+[01m[K/home/coordsys/zbx/MVSROS_project/MVS_ROS2/hik_camera/src/hik_camera_driver.cpp:348:51:[m[K [01;35m[Kwarning: [m[Kformat ‘[01m[K%u[m[K’ expects argument of type ‘[01m[Kunsigned int[m[K’, but argument 7 has type ‘[01m[Klong int[m[K’ [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wformat=-Wformat=]8;;[m[K]
+  348 |     RCLCPP_DEBUG(rclcpp::get_logger("HikCamera"), [01;35m[K"Image received: %dx%d, format=%u"[m[K,
+      |                                                   [01;35m[K^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+  349 |                  pFrameInfo->nWidth, pFrameInfo->nHeight, [32m[KpFrameInfo->enPixelType[m[K);
+      |                                                           [32m[K~~~~~~~~~~~~~~~~~~~~~~~[m[K
+      |                                                                       [32m[K|[m[K
+      |                                                                       [32m[Klong int[m[K
+[01m[K/home/coordsys/zbx/MVSROS_project/MVS_ROS2/hik_camera/src/hik_camera_driver.cpp:348:83:[m[K [01;36m[Knote: [m[Kformat string is defined here
+  348 |     RCLCPP_DEBUG(rclcpp::get_logger("HikCamera"), "Image received: %dx%d, format=[01;36m[K%u[m[K",
+      |                                                                                  [01;36m[K~^[m[K
+      |                                                                                   [01;36m[K|[m[K
+      |                                                                                   [01;36m[Kunsigned int[m[K
+      |                                                                                  [32m[K%lu[m[K
+In file included from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/logging.hpp:24[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/client.hpp:40[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/callback_group.hpp:24[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/any_executable.hpp:20[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategy.hpp:25[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategies.hpp:18[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executor_options.hpp:20[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executor.hpp:37[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executors/multi_threaded_executor.hpp:25[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executors.hpp:21[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:155[m[K,
+                 from [01m[K/home/coordsys/zbx/MVSROS_project/MVS_ROS2/hik_camera/include/hik_camera/hik_camera_driver.hpp:6[m[K,
+                 from [01m[K/home/coordsys/zbx/MVSROS_project/MVS_ROS2/hik_camera/src/hik_camera_driver.cpp:1[m[K:
+[01m[K/home/coordsys/zbx/MVSROS_project/MVS_ROS2/hik_camera/src/hik_camera_driver.cpp:[m[K In member function ‘[01m[Kvoid HikCameraDriver::printCameraInfo()[m[K’:
+[01m[K/home/coordsys/zbx/MVSROS_project/MVS_ROS2/hik_camera/src/hik_camera_driver.cpp:426:42:[m[K [01;35m[Kwarning: [m[Kformat ‘[01m[K%ld[m[K’ expects argument of type ‘[01m[Klong int[m[K’, but argument 5 has type ‘[01m[Kunsigned int[m[K’ [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wformat=-Wformat=]8;;[m[K]
+  426 |         RCLCPP_INFO(node_->get_logger(), [01;35m[K"Current Width: %ld"[m[K, [32m[Kint_value.nCurValue[m[K);
+      |                                          [01;35m[K^~~~~~~~~~~~~~~~~~~~[m[K  [32m[K~~~~~~~~~~~~~~~~~~~[m[K
+      |                                                                          [32m[K|[m[K
+      |                                                                          [32m[Kunsigned int[m[K
+[01m[K/home/coordsys/zbx/MVSROS_project/MVS_ROS2/hik_camera/src/hik_camera_driver.cpp:426:60:[m[K [01;36m[Knote: [m[Kformat string is defined here
+  426 |         RCLCPP_INFO(node_->get_logger(), "Current Width: [01;36m[K%ld[m[K", int_value.nCurValue);
+      |                                                          [01;36m[K~~^[m[K
+      |                                                            [01;36m[K|[m[K
+      |                                                            [01;36m[Klong int[m[K
+      |                                                          [32m[K%d[m[K
+[01m[K/home/coordsys/zbx/MVSROS_project/MVS_ROS2/hik_camera/src/hik_camera_driver.cpp:420:21:[m[K [01;35m[Kwarning: [m[Kunused variable ‘[01m[Kfloat_value[m[K’ [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wunused-variable-Wunused-variable]8;;[m[K]
+  420 |     MVCC_FLOATVALUE [01;35m[Kfloat_value[m[K;
+      |                     [01;35m[K^~~~~~~~~~~[m[K

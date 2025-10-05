@@ -1,0 +1,681 @@
+﻿******************************************************
+Software Version
+MVS 4.6.0 build20250808
+******************************************************
+[Machine Vision Software V4.6.0]
+1. [New] Unified versions for Linux x86 and Windows-based software.
+2. [New] Added control over Bayer Interpolation.
+3. [New] Supports real-time display of all pixel values after zooming in to a certain level.
+4. [New] Added the Camera Diagnostic Tool.
+5. [New] Supports plotting camera acquisition status parameters as line graphs.
+6. [New] Added the Device Event Analysis Tool for viewing and checking camera IO.
+7. [Update] The Event Configuration Tool now provides sample demos for events.
+8. [Update] Improved the interactions of LUT and histogram tools.
+9. [Update] The Sharpness Indicator now supports calculate sharpness of a given ROI.
+10. [Update] Support saving TIFF image in 16-bit and color.
+
+[Machine Vision Camera SDK V4.6.1]
+1. [New] Support PCIe board type light controllers.
+2. [New] Introduce an API to register an image callback and allow buffer release outside the callback.
+3. [New] Support the stream exception callback function.
+4. [New] Support serial port control related APIs for third-generation cameras.
+5. [New] Support the new image transfer mode of third-generation cameras.
+6. [New] Provide .Net library that support .NET Frameter 5 and later versions.
+7. [New] Support CameraLink Serial Port devices on Linux32/Arm platforms.
+8. [Update] Improved the efficiency of camera open/close APIs.
+9. [Update] Optimize the performance of interpolation algorithm.
+10. [Update]  The Convert Pixel Type API now supports converting Bayer 10/12 formats to Bayer 16 and Mono 10/12 to Mono 16.
+11. [Update] The VisionPro plug-in supports configuring the parameters of frame grabbers.
+12. [Update] Added support for Ubuntu kernel 6.11.0.
+13. [Update] Optimize the demo for using a line scan camera to trigger and acquire images.
+14. [Update] Improve Python API documentation and provide a developer guide.
+15. [Update] Optimize the demo programs in Python.
+
+[Machine Vision FrameGrabber SDK V2.6.1]
+1. [New] The GEV frame grabber supports the new image transfer mode of the third-generation camera.
+2. [Update] Improved the efficiency of camera open/close APIs.
+3. [Update] Optimize the performance of interpolation algorithm.
+4. [Update]  The Convert Pixel Type API now supports converting Bayer 10/12 formats to Bayer 16 and Mono 10/12 to Mono 16.
+5. [Update] Added support for Ubuntu kernel 6.11.0.
+
+******************************************************
+Software Version
+MVS 4.5.1 build20250304
+******************************************************
+[MVS 4.5.1]
+1. [Add] This version supports rendering with OpenGL for devices with graphics cards that support OpenGL 2.0.
+2. [Add] The software can acquire, render, and save images over 4GB.
+3. [Add] The software supports virtual frame grabbers. To access this feature, go to Tool -> Virtual Device.
+4. [Add] The Toolkit includes the Defect Pixel Correction Tool. Use it to calculate and correct defect pixels in a camera or local images.
+5. [Add] The ISP Tool now supports image rotation and flipping.
+6. [Add] The software supports dividing images via the frame grabber.
+7. [Add] This version supports importing ISP configuration files saved via the ISP Tool. Once imported, the software processes images according to the configurations in the file.
+8. [Add]  The software supports exporting features in the feature tree by group. Select feature groups as required and export them.
+9. [Add]  The software supports batch-adding a group of cameras to divided windows. Drag the connected group and release it into a window.
+10. [Add] This version supports rotating images after you enable the crosshair.
+11. [Add] This version adds and updates some demos in the Toolkit.
+12. [Optimize] The LUT data writing efficiency has been optimized.
+13. [Optimize] The displayed log level in the Log Viewer is optimized.
+14. [Optimize] The software now installs more quickly.
+15. [Optimize] The Software responds more rapidly when a U3V camera loses connection.
+16. [Optimize] The Software supports zooming in on an ROI you draw during the live view.
+
+[Machine Vision Camera SDK V4.5.1]
+1. [Add] The SDK now supports correcting purple fringing in images.
+2. [Add] The .NET SDK's image processing APIs support image input via image pointers to enhance program efficiency.
+3. [Add] The SDK can enumerate virtual frame grabbers and virtual cameras connected to virtual frame grabbers.
+4. [Add] The SDK supports dividing images via the frame grabber with the Multi-Light Control feature.
+5. [Add] The C++ SDK now support passing ISP parameters and processing images by ISP algorithm.
+6. [Optimize] The number of image acquisition buffers is optimized.
+7. [Optimize] The SDK responds more rapidly when a U3V camera loses connection.
+8. [Optimize] The limit for memory alignment when grabbing with the frame grabber has been removed.
+9. [Optimize] The grabbing performance of the frame grabber is optimized.
+10. [Optimize] The C++ and .NET demos have been rearranged.
+11. [Optimize] The Halcon plugin now supports Halcon 24.04.
+12. [Optimize] The VisionPro plugin supports controlling one camera with multiple widgets and supports modifying the acquisition timeout.
+13. [Optimize] The JAVA SDK issue that the call interface frequently switches threads has been fixed.
+14. [Optimize] The ReconstructImage interface supports splitting images in Bayer format.
+
+[Machine Vision Frame Grabber SDK V2.5.1]
+1. [Add] The SDK supports OpenGL rendering. It supports the acquisition, rendering, and saving of images over 4GB.
+2. [Add] The SDK now supports the purple fringing correction of the image.
+3. [Optimize] The SDK supports dividing images via the frame grabber with the Multi-Light Control feature.
+4. [Optimize] The limit for memory alignment when grabbing with the frame grabber has been removed.
+5. [Optimize] The grabbing performance of the frame grabber is optimized.
+
+
+******************************************************
+Software Version
+MVS 4.4.0 build20240820
+******************************************************
+[MVS V4.4.0]
+1. [Add] Supports connecting PCIe devices through the PCIe interface in the device list, and optimizes interface categories.
+2. [Add] Supports batch connecting/disconnecting and starting/pausing acquisition operations.
+3. [Add] Supports specifying serial port ID in the general settings. Once set, when you refresh the Serial Port interface enumeration, the Software enumerates devices connected to the specified port.
+4. [Add] Supports Minimalist Mode in the settings. When the mode is enabled, the Software pauses automatic data refresh to save system resources.
+5. [Add] Supports rendering mono 14 pixel format images.
+6. [Add] Adds One Click Adjustment in the live view panel, which adjusts acquired image quality automatically.
+7. [Add] Feature in the feature tree supports using slider control to adjust node value.
+8. [Add] Feature tree supports displaying feature details, including description and code sample.
+9. [Add] Adds Bandwidth Detection tool, you can test the actual bandwidth of the PCIe interface to determine if the interface can meet your needs.
+10. [Add] The Device Diagnostic Tool supports setting exception conditions and notifying when an exception occurs.
+11. [Add] The PCIe Diagnostic Tool supports XoFLink frame grabber.
+12. [Optimize] Optimizes the pixel value displayed during live view.
+13. [Optimize] Optimizes the Log Viewer, you can view logs from the camera(s) and frame grabber(s).
+14. [Optimize] Fixes the crash issue that occurs when saving images with the highest quality.
+15. [Optimize] Fixes the display issue when rendering acquired images in HB mode.
+
+[Machine Vision Camera SDK V4.4.1]
+1. [Add] Added an API for enumerating cameras by correspnoding frame grabber handle.
+2. [Add] Added APIs for enabling and disabling notifications of device events.
+3. [Add] Added some sample codes: Events_Interface, MultiLightCtrl_ImageStitching, ParametrizeCamera_LineScanIOSettings, and ImageSave.
+4. [Optimize] Optimized rendering engine OpenGL to support image grabbing, image rendering, and image saving of image over 4 GB.
+5. [Optimize] Optimized IImage in .NET to support IDispose.
+6. [Optimize] Fixed some bugs.
+
+[Machine Vision Frame Grabber SDK V2.4.1]
+1. [Optimize] Optimized APIs to support image grabbing of image over 4 GB.
+2. [Optimize] Fixed some bugs.
+
+******************************************************
+Software Version
+MVS 4.3.2 build20240508
+******************************************************
+[MVS V4.3.2]
+1. [Optimize] Fixed bugs where graphs are stored with variable row heights.
+
+[Install Package]
+1. [Optimize] Fixed the bug of installing in the virtual disk environment.
+
+******************************************************
+Software Version
+MVS 4.3.1 build20240322
+******************************************************
+[MVS V4.3.1]
+1. [Add] Supports devices with multi-light control function.
+2. [Add] The firmware upgrade tool supports fuzzy match.
+3. [Add] Supports opening the control window of frame grabber user set.
+4. [Optimize] Fixes the issue of exporting RGB images of cameras of high resolution.
+5. [Optimize] Fixes the issue that the image may be blurry during HB rendering.
+
+[Machine Vision Camera SDK V4.3.1]
+1. [Add] Added APIs of initializing SDK and finalizing SDK
+2. [Add] Added APIs of self-developed frame grabber: enumerating frame grabbers, creating frame grabber handle, opening frame grabber, closing frame grabber, and destroying frame grabber handle
+3. [Add] Added APIs of getting local serial port list
+4. [Add] Added APIs of setting and enumerating serial port devices in the specified serial port list
+5. [Add] Added the value "optimal plus"
+6. [Add] Added sample code for frame grabber related APIs
+7. [Add] Added sample codes for C# language 
+8. [Add] The API of enumeration supports enumerating cameras under self-developed frame grabber
+9. [Add] Camera supports debugging tools (Windows)
+10. [Optimize] Supports frame grabber events, attribute configuration, file import/export, and firmware upgrade
+11. [Optimize] Supports frame grabber handle for image related APIs
+12. [Optimize] Supports high-resolution image rendering
+13. [Optimize] The max. number of image interpolation threads is 4
+14. [Optimize] Cache optimization of line array camera with acquisition card
+15. [Optimize] Optimization of flow extraction strategy for GIGE camera
+16. [Optimize] Optimization of the interface for upgrading and obtaining progress
+17. [Optimize] Addition of some parameter settings for the VP plug-in
+18. [Optimize] Optimized fast interpolation algorithm
+19. [Optimize] Fixed several history bugs
+
+[Industrial Frame Grabber SDK V2.3.3]
+1. [Add] Supports ROI function of CML frame grabber
+2. [Add] Added sample codes: Trigger, SetIOSignal, FileAccess, etc.
+3. [Add] Compatiple with several thrid-party CML cameras
+4. [Add] Support the long and short exposure function of XoF camera
+5. [Optimize] Improved the XoF camera firmware upgrade speed
+6. [Optimize] Fixed serveral bugs of crash and memory leak
+7. [Optimize] Improved the streaming performance
+8. [Optimize] Improve the BasicDemoLineScan sample program
+9. [Optimize] Improve the SDK logs of the industrial acquisition card
+10. [Optimize] Fixed several history bugs
+
+******************************************************
+Software Version
+MVS 4.3.0 build20231128
+******************************************************
+[MVS V4.3.0]
+1. Adds the ISP Tool in the Tool Kit.
+2. Feature Import&Export Tool: Supports frame grabbers.
+3. Event Configuration Tool: Supports importing or exporting the files.
+4. Firmware Upgrade Tool: Optimizes the operations of frame grabbers.
+
+[Machine Vision Camera SDK V4.2.1]
+1. Supports the GE1104 frame grabbers.
+
+[Industrial Frame Grabber SDK V2.3.0]
+1. Supports the GE1104 frame grabbers.
+
+******************************************************
+Software Version
+MVS 4.2.1 build20230901
+******************************************************
+[MVS V4.2.1]
+1. [MVS] Adds the Event Configuration Tool in the Tool Kit..
+2. [MVS] Adds Firmware Upgrade Tool, Feature Import&Export Tool, and Port Editing Tool to the Tool Kit.
+3. [MVS] Adds the the function of flat-field correction for the line-scan camera.
+4. [MVS] Optimizes the operations of frame grabbers: supports enumerating frame grabbers by default and supports enumerating multiple types of frame grabbers.
+5. [MVS] Device Diagnostic Tool: Optimizes the IO waveform graph, adds the function of detecting abnormal IO, and supports XoF frame grabbers.
+6. [MVS] Optimizes the user interface of feature tree.
+7. [MVS] Fixes the issue of JPEG images' pixel format and the issue of saving RAW image.
+
+[Machine Vision Camera SDK V4.1.2]
+1. Adds Sherlock V7277 32-bit machine vision camera SDK plug-in.
+2. Adds VC demo programs including ForceIPEx and Grab_Asynchronous.
+3. Adds C# demo program HighBandwidthDecode.
+4. Adds python demo programs including RawDataFormatConvert and HighBandwidthDecode.
+5. The MV_CC_GetOptimalPacketSize API supports cameras connected via frame grabbers from Hikrobot.
+6. Fixed the memory leak that occurs after enumerating cameras and acquisition.
+7. Fixed probable crashes during a multi-threaded enumeration and camera starting.
+8. VisionPro plug-in now supports interpolation in Bayer8 format.
+9. HB decoding interface supports adjusting image size to a standard or normal value.
+10. Adjusts the log levels in the log service.
+11. Supports saving images in Mono12Packed format to tiff format.
+12. The virtual camera supports 3D cameras.
+13. Supports configuring the interpolation algorithm thread number.
+
+[Industrial Frame Grabber SDK V2.3.0]
+1. Adds the feature of multi-progress control to CXP/XoF frame grabber.
+2. Adds SDK APIs for initialization and anti- initialization.
+3. Supports linescan of XoF/CXP frame grabber.
+4. Adds C# demo programs including BasicDemoLineScan, ReconstructImageDemo, SeparateForCMLDemo, FeatureSave, GrabImage_UserBuffer, and HBDecode.
+5. Adds Labview demo program MVFGLabviewDemo.
+6. Adds VCdemo program HBDecode.
+7. Adds the function of multi-progress control to GEV/CML frame grabber, which supports starting multiple progresses simultaneously with controlling permission.
+8. Optimizes the costed time for CML camera’s commands application.
+9. Optimizes the performance of frame grabber event.
+10. Supports working with some new third-party cameras.
+11. Optimizes the SDK development guide for C APIs.
+
+
+******************************************************
+Software Version
+MVS 4.1.0 build20230530
+******************************************************
+[MVS V4.1.0]
+1.[Add] MVS Tool Kit Client
+2.[Add] Device Diagnostic Tool
+3.[Add] PCIe Diagnostic Tool
+4.[Optimize] PC Diagnostic Tool
+
+Machine Vision Camera SDK V4.1.1
+1.[Add] Add support for high resolution images(width or height larger than 65535) acquisition/rendering/saving and format conversion
+2.[Add] Add parameter configuration for whether to generate dump files
+3.[Optimize] Support Virtual Camera on JAVA/C#/PYTHON
+4.[Optimize] VisionPro Plug-in supports HB decoding
+5.[Optimize] Optimize Labview demo
+6.[Optimize] Fixed memory leak issue in JAVA demo 
+
+Frame Grabber SDK V2.2.1
+1.[Add] Add extension interface to open FG, support importing configuration files
+2.[Add] Add interface for configuration of acquisition strategy
+3.[Add] Add extension interface for registering image callback function, support optional image cache auto-recycling
+4.[Add] Add interfaces for drawing lines, circles and rectangles
+5.[Add] Add JPEG images decoding interface
+6.[Add] Add device file read/write interface
+7.[Add] Add register read/write interface
+8.[Add] Add support for Frame Grabber with self-developed protocols
+9.[Add] Add Python interface and demo
+10.[Optimize] Support for ambiguous search to open Frame Grabber and camera interfaces by ID
+11.[Optimize] Register event interface supports GEV camera events
+12.[Optimize] GEV/CML Frame Grabber support multi-process control
+13.[Optimize] Improve virtual serial port driver compatibility and stability
+14.[Optimize] Optimize Frame Grabber event performance
+15.[Optimize] Improve SDK compatibility with CXP/CML Frame Grabber
+
+
+
+******************************************************
+Update Date: 2023-03-02
+Version: 4.0.1
+******************************************************
+1. [MVS] Supports thermographic automation thermal cameras.
+2. [MVS] Fixed the issue that saving raw images failed.
+3. [MVS] Fixed the issue that only the first frame is displayed when viewing live view of some framegrabbers.
+4. [SDK] Fixed the occassionally failure of opening a framegrabber and optimized the accuracy of event time stamp.
+5. [SDK] Fixed the HB decoding failure of some pixel formats.
+
+
+
+
+******************************************************
+Update Date: 2022-12-03
+Version: 4.0.0
+******************************************************
+New Features and Optimizations 
+1. [MVS] Added tools including dead pixel correction tool, and tool for customizing framgrabber ports.
+2. [MVS] Supports cameras with temperature screening function.
+3. [MVS] Optimized the frame rate of acquisition and image display.
+4. [MVS] Updated log viewer. The firmware upgrader supports upgrading cameras under a framegrabber in .
+5. [MVS] Optimized the Event Monitor function.
+6. [MVS] Optimized common features, NIC configuration, bandwidth configuration of liner cameras.
+7. [SDK] Supports connecting to framegrabber ports by ID.
+8. [SDK] Supports connecting to camera ports by ID.
+9. [SDK] Added APIs of registration exception callback and event callback.
+10. [SDK] Added APIs for saving PNG images and Tiff images.
+11. [SDK] Added VisionPro plugin and tool for framegrabber.
+
+
+******************************************************
+Update Date: 2022-09-28
+Version: 3.4.3
+******************************************************
+New Features and Optimizations 
+1. 【MVS】Update integrated Interface SDK V2.0.0 version.
+2. 【SDK】When the interface driver is not checked in the installation interface, the virtual serial port driver is no longer installed. 
+3. 【SDK】From this version, if a newer version of runtime has been installed, a pop-up prompt will be given before overwriting with the old version.
+
+Bug Fixes
+1. 【SDK】When connecting the camera, if GVCP retransmission times are not configured in the CommonParameters.ini configuration file, this parameter will be set to 0 by mistake.
+   
+   
+******************************************************
+Update Date: 2022-06-20
+Version：3.4.2
+******************************************************
+1. 【MVS】Optimized the operating interactions of frame grabbers. 
+2. 【MVS】Supports importing and exporting features of frame grabbers, upgrading firmware of frame grabbers, and saving the xml file of frame grabber features.
+3. 【MVS】Supports displaying features of frame grabbers in Chinese or English.
+4. 【MVS】Added an error code list in the Software and User Manual.
+5. 【MVS】Supports connecting to a frame grabber as a virtual camera.
+6. 【MVS】Fixed historical issues.
+7. 【SDK】Added API for opening the Graphical User Interface (GUI) of camera parameters configurations.
+8. 【SDK】Added the sample code OpenParamsGUI.cpp
+9. 【SDK】Added APIs for drawing auxiliary rectangle frames/circle frames/lines on the image.
+10.【SDK】Added API for reconstructing the image.
+11.【SDK】Added API for registering the callback function for receiving the stream exceptions.
+12.【SDK】Added API for setting the number of event cache nodes for USB3.0 cameras.
+13.【SDK】Added API for unloading the CTI library.
+14.【SDK】Added the Runtime and programming package for frame grabber SDK.
+15.【SDK】Added API for enabling or disabling the smoothing function of interpolation algorithm.
+16.【SDK】Supports virtual camera.
+
+
+******************************************************
+Update Date: 2022-03-18
+Version：3.4.1
+******************************************************
+
+Software:
+1. Supports adding a virtual camera and viewing images by a virtual camera.
+2. Added the functions of enumerating frame grabbers, upgrading frame grabbers, and configuring frame grabber attributes based on GenTL.
+3. Fixed issues.
+
+SDK:
+1. The API for enumeration supports enumerating cameras with Hikrobot NIC and virtual cameras.
+2. Added an API for programming frame grabbers.
+3. Fixed the issue that the Software stops working after connecting to a third-party camera.
+4. Fixed the issue that installing the USB driver failed in some situations.
+
+
+******************************************************
+Update Date: 2022-01-05
+Version：3.4.0
+******************************************************
+
+Software:
+1. Support new pixel formats including mono16 and Bayer RBGG.
+2. Support U3V camera live view of high stream rate.
+3. Optimized common features: added new features and optimized the interface.
+4. Support upgrading firmware of CoaXPress camera.
+5. Optimized other features and fixed some issues.
+
+SDK:
+1. Support configuring algorithm parameters via ISP plug-in library.
+2. Updated the USB cti file in Win32_i86 file folder. Fixed the camera enumeration issue.
+3. Optimized MV_CC_StartRecord API. Support downloading videos with frame rate higher than 500 Fps. 
+4. Updated MV_CC_HB_Decode API. Support decoding streams of HB_RBGG format.
+5. Updated the Java API of camera SDK.
+
+******************************************************
+Update Date: 2020-12-07
+Version: 3.3.1
+******************************************************
+New Features and Optimizations 
+1. 【MVS】Supports setting encoding type for the character strings on the user interface of MVS.
+2. 【MVS】Supports setting default saving path for cit file, which will be loaded when you use GenTL standard to enumerate cameras. 
+3. 【MVS】Supports exporting information of all cameras connected to the Software.
+4. 【MVS】(GigE Vision Camera) Supports setting timeout period for packet sending mechanism defined in the GVSP protocol.
+5. 【MVS】Supports setting Line Debouncer Time to filter out unwanted short signals (contact bounce) from hardware trigger signals.
+6. 【MVS】Supports setting Color Correction Matrix (CCM) to enhance color fidelity. 
+7. 【MVS】Supports setting LUT line type to Adaptive.
+8. 【MVS】Optimized user interface of the User Set Control functionality.
+9. 【MVS】Supports dragging image, sharpness indicator (only available when image format is mono8), and exporting RGB values of each pixel.
+10.【SDK】Supports Lens Shading Correction (LSC) algorithm.
+11.【SDK】Supports contrast enhancement and sharpness algorithm.
+12.【SDK】Added an API for enabling/disabling CLUT and setting CLUT parameters for Bayer pattern.
+13.【SDK】Supports color correction functionality including Color Correction Matrix (CCM) and Color Lookup Table (CLUT).
+14.【SDK】Added VS/C# sample programs of algorithms such as LSC, spatial denoising, image enhancement, and image correction.
+15.【SDK】Added Python sample program of multiple-camera image acquisition. 
+16.【SDK】Added an API for color correction after Bayer interpolation.
+17.【SDK】Added an API for setting gamma value after Bayer interpolation.
+14.【SDK】Supports noise estimating and spatial denoising when pixel format is Mono or RGB.
+15.【SDK】Optimized VS, C# and VB sample programs of multiple-camera image acquisition.
+16.【SDK】Optimized efficiency and stability for the image acquisition functionality of GigE drive.
+
+Bug Fixes
+   【SDK】Fixed bugs found in previous versions.
+
+
+******************************************************
+Release date: 2020-04-24
+Version: 3.2.1
+******************************************************
+(1) New functions and performance optimizations
+1. 【MVS】Supports GenTL, which allows you to connect cameras to the Software via the GenTL standard.
+2. 【MVS】Supports viewing local images and local videos.
+3. 【MVS】Supports fast access (Help -> Development) to the Development folder which contains the files required for software development.
+4. 【MVS】Switching the display language of the feature tree between Chinese and English.
+5. 【MVS】Supports setting white balance in a more user-friendly way for the color camera when it is set to Bayer format.
+6. 【MVS】Supports viewing histogram to fast evaluate the image quality.
+7. 【MVS】Supports displaying grids on image.
+8. 【MVS】Optimized the Cross Line functionality.
+9. 【MVS】 Supports viewing the feature differences between the current features of a camera and the to-be-imported features when you import features to the camera.
+10.【MVS】Supports GVCP settings and sticking camera to the top of GigE Vision camera list for GigE Vision cameras.
+11.【MVS】Supports sticking camera to the top of the USB3 Vision camera list, Event Monitor, and U3V transfer settings for USB3 Vision cameras.
+12.【MVS】Optimized user interface designs for drawing ROI and AOI.
+13.【MVS】Supports connecting cameras and setting the displayed information items on the Bandwidth Manager.
+14.【MVS】Added mutual exclusion feature for the Periodically Send parameter and Request Acknowledge parameter of Action Command.
+15.【MVS】Supports refreshing logs, viewing process name and process ID, and setting the displayed information items on Log Viewer.
+16.【MVS】Supports more formats for the captured pictures and recorded videos.
+17.【MVS】Supports enabling/disabling the software to pop up a prompt when severe packet losses occur.
+14.【SDK】Supports GenTL interface, which can be used to import GenTL library, enumerate devices and create device handles.
+15.【SDK】Supports saving image to file in the formats including TIFF, PNG, BMP, and JPEG.
+16.【SDK】Supports saving point cloud data in the formats including PLY, CSV, and OBJ.
+17.【SDK】Supports obtaining multicast status of a camera to determine if the camera is under multicast.
+18.【SDK】Decreased the GigE memory occupation for more than 15%.
+19.【SDK】Optimized Bayer interpolation methods.
+
+(2) Corrections
+1. 【SDK】Fixed the bug that NULL value of GevPAUSEFrameReception may occur when calling the IPConfig API.
+2. 【SDK】Fixed the bug that incorrect judgement of NULL value exists during registration exception callback.
+3. 【SDK】Moved the obsolete APIs to new header file to distinguish them from the frequently-used ones.
+4. 【SDK】Fixed the bug that crashes may occur when writing features of camera A to camera B via the FileAccessWrite API.
+5. 【SDK】Fixed the bug that blue-screen error may occur after registering simulated Event of GigE Vision cameras.
+
+
+******************************************************
+Release date: 2018-12-13
+Version: 3.1.0
+******************************************************
+(1) New functions and performance optimizations
+1. [MVS] Added CameraLink interface,able to connect CameraLink camera, acquire and set parameters.
+2. [MVS] Added custom shortcut key function in Settings selection.
+3. [MVS] Added Bandwidth Manager, support analysis and adjustment on bandwidth of GigE and USB cameras.
+4. [MVS] Added Action Command for GigE Vision, allow to achieve simultaneous trigger on GigE cameras.
+5. [MVS] Added Diagnostic Tool, allow to detect the PC running environment for MVS client.
+6. [MVS] Added configuration setting function in Log Viewer tool.
+7. [MVS] Changed the position of Transport Layer Control in Common Features.
+8. [MVS] Optimized the operation interface of cameras to avoid program block.
+9. [MVS] Added the function of opening MVS client via Command window, support opening mcfg project file by double-click.
+10. [MVS] Optimized the accuracy and display control between acquisition frame rate and display frame rate.
+11. [MVS] Added image rotation function under GDI rendering engine.
+12. [Install Package] Added notation on revision return.
+13. [Install Package] Added environment variable for Debug.
+14. [SDK] Added api for active acquisition of camera connection status.
+15. [SDK] Added Action Command function.
+16. [SDK] Added recording function.
+17. [SDK] Added support for CameraLink cameras.
+18. [SDK] Added function of adjusting heartbeat time for Debug in environment variable.
+19. [SDK] Optimized memory occupation for MV-CE200-10UM/UC.
+
+(2) Corrections
+1. [MVS] Fixed the display problem of remote control in Windows 10.
+2. [SDK] Fixed the problem of crash when changing image format or height and width.
+3. [SDK] Blocked the uboot status of USB camera enumeration.
+4. [SDK] Fixed the limitation of enumerating only 32 cameras in multi-NIC environment when no camera connected to No.0 NIC and over 32 cameras connected to No.1 NIC.
+
+******************************************************
+Release date: 2018-07-23
+Version: 3.0.0
+******************************************************
+(1) New functions and performance optimizations
+1.[MVS] Modified interface interaction and optimized interface effect.
+2.[MVS] Optimized the client toolbar classification, differentiate the main window toolbar, device toolbar, preview toolbar.
+3.[MVS] Optimized the feature tree, classify it on the right side of the main window, and added the Save Feature function.
+4.[MVS] Added support of full screen for multi camera.
+5.[MVS] Added double click to switch multi window and single window under multi camera view.
+6.[MVS] Added custom window division function.
+7.[MVS] Added the cancellation of related operations between camera and window, and support opening single camera without display.
+8.[MVS] Added Log Viewer tool.
+9.[MVS] Added support of preview for multi camera embedded information.
+10.[MVS] Removed the firewall detection function since MVS related programs have been added to the white list of firewalls.
+11.[Install Package] Added options of enabling jumbo frame of all NICs.
+12.[Install Package] Added options of running client or opening release note after successful installation.
+13.[Install Package] Added Modify options in the software Update page.
+14.[Install Package] Added file occupation detection when uninstalling or updating.
+15.[Install Package] Added version return function.
+16.[Install Package] Added options of opening or closing of SDK log service.
+17.[Install Package] Removed registration or logout of SDK DirectShow plug.
+18.[SDK] Decreased the CPU loading of U3V cameras.
+19.[SDK] Optimized the streaming stability of U3V camera under trigger mode.
+20.[SDK] Decreased the CPU loading of GigE cameras.
+21.[SDK] Added MV_CC_GetImageBuffer api for high performance streaming.
+22.[SDK] Added MV_CC_DisplayOneFrame api for displaying one frame.
+23.[SDK] Added MV_CC_GetIntValueEx and MV_CC_SetIntValueEx api for getting or setting 64-bit camera features.
+24.[SDK] Added MV_CC_InvalidateNodes api for clearing GenICam node caching.
+25.[SDK] Added SDK custom events (only ExposureEnd event supported currently).
+26.[SDK] Added the current frame number, data retransmission request frequency and other information into MV_CC_GetAllMatchInfo api.
+27.[SDK] Optimized the readability of SDK log.
+28.[Sample Code] Added support for Python.
+29.[Sample Code] Added demos of acquiring images by calling high performance streaming api MV_CC_GetImageBuffer.
+
+(2) Corrections
+1.[MVS] Fixed the problem of unable to update feature value of monitor under multicast mode.
+2.[SDK] Fixed the problem of incorrect timestamp in DotNet.
+3.[SDK] Fixed the problem of incorrect embedded information in callback acquiring images.
+4.[SDK] Fixed the problem of probabilistic stuck under trigger mode in DirectShow plug-in.
+
+******************************************************
+Release date: 2018-03-29
+Version: 2.4.0
+******************************************************
+(1) New functions and performance optimizations
+1.[MVS] Added Open, Open Recent, Save and Save As in File menu;
+2.[MVS] Added the Import and Export functions of FileAccess;
+3.[MVS] Added the Event Monitor function;
+4.[MVS] Moved the fundamental features of camera from the original "Setting" sub-menu to "Camera" sub-menu;
+5.[MVS] Optimized the IP Configurator and Firmware Updater to achieve batch operation;
+6.[MVS] Added batch tool of Import/Export Features;
+7.[MVS] Added the Multicast function of GigE cameras;
+8.[MVS] Optimized the driver manager and solved the misjudging problem of U3V driver installation;
+9.[MVS] Cancelled the limitation of administrator authority for MVS client and changed the path of saving the default data and log;
+10.[Install Package] Changed the user interface, optimized the interface effect, cancelled the distinction of normal user and developer;
+11.[Install Package] Added the environmental variable of SDK library (.h and .lib);
+12.[Install Package] Added the registration and logout of DirectShow plug;
+13.[SDK] Added the API of Event registration;
+14.[SDK] Added the API of read/write and getting the progress for FileAcess;
+15.[SDK] Added the API for setting the saving path for SDK log;
+16.[SDK] Added SetEnumValueByString API;
+17.[SDK] Added SaveImageEx2 API;
+18.[SDK] Supported the multicast function of GigE cameras;
+19.[SDK] Compatible with the XE5 and MinGW compiler;
+20.[SDK] Added the support of Display API for Jpeg images;
+21.[SDK] Decreased the memory occupation of U3V cameras;
+22.[Driver] Decreased the CPU loading of GigE cameras;
+23.[Plug] Added plugs for DirectShow, Halcon and Sherlock;
+24.[Plug] Added the support for color pixel formats in LabView vi;
+25.[Sample Code] Added demos for pixel format transfer and reconnection, added demos for VB and C# control platform, supplemented VC6 demo;
+26.[Sample Code] Support Simplified Chinese and English simultaneously in demos;
+27.[Sample Code] Added environmental variables for head files and static library, lowered the difficulty of using demos;
+28.[Sample Code] Added project configuration for multiple VS versions;
+29.[Document] Added the explanation for DotNet APIs.
+
+(2) Corrections
+1.[SDK] Fixed the problem of crushing when abnormally using FeatureSave and FeatureLoad;
+2.[Sample Code] Fixed the problem of inaccuracy acquisition of IO information in SetIO demo;
+3.[Sample Code] Fixed the problem of saving no image data after softtrigger in the multiple camera demo.
+
+******************************************************
+Release date:2017-11-29
+Version: 2.3.1
+******************************************************
+(1) New functions and performance optimizations
+1. [MVS] Added bandwidth, errors and lost packets options for status bar of multi-cameras;
+2. [MVS] Compatible with ChunkData;
+3. [MVS] Modified configuration rules of feature tree and fixed the memory leakage issue;
+4. [SDK] Added the information of whether the current frame has lost frames into GetOneFrameTimeOut API;
+5. [SDK] Added C# API which covers same functions as C API;
+6. [SDK] Added protection mechanism to ensure that the U3V camera is not stopped in the case of unstable transmission signal;
+7. [SDK] Added support of ChunkData function from camera;
+8. [SDK] Optimized reconnection mechanism, which support reconnecting inside callback API;
+9. [Sample Code] Added examples for pixel format conversion;
+
+(2) Corrections
+1. [MVS] Fixed the problem of the firmware updater not able to continuously update
+2. [MVS] Fixed sudden crash of the firmware updater after firmware updating
+3. [MVS] Fixed probabilistic lost connection after the acquisition lasts for a long time
+4. [SDK] Fixed probabilistic stuck when calling destroy handle API after device restart;
+5. [SDK] Fixed probabilistic library conflicts between SDK and client programs on VC6.0;
+6. [GEV Driver] Fixed blue screen problem grabbing upon part of NIC;
+7. [GEV Driver] Fixed filter of some data packet of NIC from GigE driver
+
+******************************************************
+Release date:2017-09-29
+Version: 2.3.0
+******************************************************
+(1) New functions and performance optimizations
+1. [MVS] Added support of multiple cameras operation;
+- Three kind of display window: Single, 4-division and 9-division
+- View of acquisition status of multiple cameras
+- Switch to full-screen under multiple cameras mode
+2. [MVS] Added quick access toolbar under full-screen;
+3. [MVS] Added cross line function;
+4. [MVS] Added packet re-send configuration;
+5. [MVS] Added function of getting local PC system information;
+6. [MVS] Added device status view under device list;
+7. [MVS] Optimized Node view and description under feature tree;
+8. [MVS] Optimized classify feature module function under Setting menu;
+9. [MVS] Optimized processing efficiency of Bayer interpolation algorithm;
+10. [MVS] Optimized parser mode of embedded information, to compatible with high resolution cameras;
+11. [MVS] Optimized video function, and display the usage state of recording buffer;
+12. [MVS] Optimized program memory utilization, to improve display efficiency;
+13. [MVS] Deleted rarely used menu, to simply item of main menu bar;
+14. [MVS] Deleted button of remove camera under the right click off device list;
+15. [MVS] Deleted classify feature live view function under Setting menu;
+16. [SDK] Optimized compatibility of GEV driver to different NICs;
+
+(2) Corrections
+1. [SDK] Solved inaccurate timeout of GetOneFrameTimeOut under U3V cameras when blocking;
+2. [SDK] Solved print of SDK log after stop grabbing under image callback;
+3. [GEV Driver] Solved the problem of small probability of blue screen when the driver resource is not enough under 32-bit system;
+4. [GEV Driver] Solved GEV driver signature failure in part of Win10 computers;
+5. [U3V Driver] Solved U3V driver signature failure in part of Win10 computers;
+6. [Document] Fixed incorrect node type description of BlackLevel.
+
+******************************************************
+Release date:2017-07-28
+Version: 2.2.3
+******************************************************
+(1) New functions and performance optimizations
+1. [Install Package] Added new function of remain user data option when uninstalling;
+2. [Install Package] Optimized stabilization of install package;
+3. [MVS] Added feature nodes description text;
+4. [MVS] Added default file name when capturing;
+5. [MVS] Added NIC information description under device feature tree;
+6. [MVS] Optimized display processing module and display performance;
+7. [SDK] Added extensional interface for setting camera's static IP;
+8. [SDK] Added interface for pixel format conversion;
+9. [SDK] Added interface for selecting Bayer interpolation algorithm;
+10. [SDK] Added interface for get one frame of RGB/BGR image data and interface for callback of RGB/BGR image data;
+11. [SDK] Added enumeration interface for filtering camera according to manufacturer’s name;
+12. [SDK] Added support of USB3.0 Camera for MV_CC_GetOneFrameTimeOut interface;
+13. [SDK] SDK set camera's heartbeat to 60 seconds automatically under debug mode in order to facilitate user’s debug;
+14. [SDK] Reduce CPU usage when grabbing, more significant under multi-camera application;
+15. [GEV Driver] Removed limit of at most 8 GEV camera grabbing at the same time, the current maximum grabbing path numbers depend on the performance of computer;
+16. [Sample Code] Added BCB demo;
+17. [Sample Code] Added XE5 demo (Note: When using XE5, the header file needs to use those under XE5 sample code);
+18. [Sample Code] Added support of USB3.0 camera in Halcon sample code;
+19. [Sample Code] Added support of USB3.0 camera in Labview sample code;
+20. [Sample Code] Added VC re-connect demo;
+21. [Document] Added description of these added interface.
+
+(2) Corrections
+1. [MVS] Solved problem when saving image continuously;
+2. [MVS] Solved connecting camera stuck when network is unstable;
+3. [SDK] Solved x64 SDK crash in part of Win10 computers;
+4. [SDK] Solved the problem of small probability that get into image callback function after stop grabbing;
+5. [SDK] Solved the problem of small probability that cannot get image data under debug mode;
+6. [GEV Driver] Solved the problem of cannot get the first frame under callback above 5MP resolution camera;
+7. [U3V Driver] Solved the problem about USB3.0 camera cannot be detected probably after wake-up from sleep;
+8. [U3V Driver] Solved USB3.0 driver compatibility with some third-party drivers;
+9. [U3V Driver] Solved the problem of USB3.0 camera cannot grab image probably in part of computers;
+10. [Sample Code] Solved several demo defect to promote the demo utility;
+11. [Document] Modified some description of sample code documents.
+
+******************************************************
+Release date: 2017-05-03
+Version: 2.2.2
+******************************************************
+(1) New functions and performance optimizations
+1. [MVS] Optimized IP configuration process duration;
+2. [MVS] Optimized CPU usage of display;
+3. [MVS] Support for Win10 system;
+4. [SDK] Added ChunkData mode;
+5. [SDK] Added register camera Event callback interface;
+6. [SDK] Added Timeout mechanism, to optimize the stability of the GEV camera grabbing image;
+7. [SDK] Added MV_CC_GetOneFrameTimeout interface, the interface can set to get frame timeout, currently only supports GEV camera;
+8. [SDK] Added 64-bit SDK;
+9. [SDK] Added packet loss detection mechanism for USB3.0 camera;
+10.[SDK] Optimized the performance of GVSP retransmission packet;
+11.[SDK] Optimized CPU usage of SDK grabbing image;
+12.[SDK] Optimized the use of multiple cameras CPU usage scenarios;
+13.[SDK] Optimized image cache mechanism, to improve the performance of MV_CC_GetOneFrame interface;
+14.[SDK] Optimized GVCP heartbeat mechanism, to reduce the probability of offline;
+15.[GEV Driver] Adjusted group frame strategy, to ensure no image lost at more than 1000fps;
+16.[U3V Driver] Support Win8.1 and Win10 system;
+17.[GenICam] Upgraded to 3.0.1 version, which reduce register analysis time, while free installation to avoid conflicts with other vendors;
+18.[GenICam] Provided development kit of GenICam 3.0.1 version for C++ user’s reference.
+
+(2) Corrections
+1. [MVS] Solved jumbo frame detection error of multi NIC;
+2. [MVS] Solved device state error of IP configuration tool;
+3. [MVS] Solved image saving exception under English / Traditional Chinese system;
+4. [SDK] Solved timestamp inaccurate in special mode of GEV camera;
+5. [SDK] Solved Lost Packet inaccurate in some probability;
+6. [SDK] Solved unrestricted storage of log in program exception;
+7. [SDK] Solved disorder of camera serial number in multiple enumeration;
+8. [SDK] Solved grabbing failure of software reopen when incorrect processing of camera offline has been done by upper layer software;
+9. [GEV Driver] Solved blue screen of death in receiving abnormal camera data packets;
+10.[U3V Driver] Solved driver installation failure of repeatedly installed in some probability.

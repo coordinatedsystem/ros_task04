@@ -1,0 +1,81 @@
+[0.010s] Invoking command in '/home/coordsys/zbx/MVSROS_project/build/hik_camera': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --build /home/coordsys/zbx/MVSROS_project/build/hik_camera -- -j16 -l16
+[0.055s] [35m[1mConsolidate compiler generated dependencies of target hik_camera_node[0m
+[0.073s] [ 33%] [32mBuilding CXX object CMakeFiles/hik_camera_node.dir/src/hik_camera_driver.cpp.o[0m
+[2.197s] In file included from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/logging.hpp:24[m[K,
+[2.198s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/client.hpp:40[m[K,
+[2.198s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/callback_group.hpp:24[m[K,
+[2.198s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/any_executable.hpp:20[m[K,
+[2.198s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategy.hpp:25[m[K,
+[2.198s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategies.hpp:18[m[K,
+[2.198s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executor_options.hpp:20[m[K,
+[2.198s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executor.hpp:37[m[K,
+[2.198s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executors/multi_threaded_executor.hpp:25[m[K,
+[2.198s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executors.hpp:21[m[K,
+[2.198s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:155[m[K,
+[2.198s]                  from [01m[K/home/coordsys/zbx/MVSROS_project/MVS_ROS2/hik_camera/include/hik_camera/hik_camera_driver.hpp:6[m[K,
+[2.198s]                  from [01m[K/home/coordsys/zbx/MVSROS_project/MVS_ROS2/hik_camera/src/hik_camera_driver.cpp:1[m[K:
+[2.198s] [01m[K/home/coordsys/zbx/MVSROS_project/MVS_ROS2/hik_camera/src/hik_camera_driver.cpp:[m[K In static member function ‘[01m[Kstatic void HikCameraDriver::onImageCallback(unsigned char*, MV_FRAME_OUT_INFO_EX*, void*)[m[K’:
+[2.198s] [01m[K/home/coordsys/zbx/MVSROS_project/MVS_ROS2/hik_camera/src/hik_camera_driver.cpp:303:17:[m[K [01;35m[Kwarning: [m[Kformat ‘[01m[K%u[m[K’ expects argument of type ‘[01m[Kunsigned int[m[K’, but argument 7 has type ‘[01m[Klong int[m[K’ [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wformat=-Wformat=]8;;[m[K]
+[2.198s]   303 |                 [01;35m[K"Image received: %dx%d, format=%u"[m[K,
+[2.198s]       |                 [01;35m[K^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+[2.198s]   304 |                 pFrameInfo->nWidth, pFrameInfo->nHeight, [32m[KpFrameInfo->enPixelType[m[K);
+[2.198s]       |                                                          [32m[K~~~~~~~~~~~~~~~~~~~~~~~[m[K
+[2.198s]       |                                                                      [32m[K|[m[K
+[2.198s]       |                                                                      [32m[Klong int[m[K
+[2.198s] [01m[K/home/coordsys/zbx/MVSROS_project/MVS_ROS2/hik_camera/src/hik_camera_driver.cpp:303:49:[m[K [01;36m[Knote: [m[Kformat string is defined here
+[2.198s]   303 |                 "Image received: %dx%d, format=[01;36m[K%u[m[K",
+[2.198s]       |                                                [01;36m[K~^[m[K
+[2.198s]       |                                                 [01;36m[K|[m[K
+[2.198s]       |                                                 [01;36m[Kunsigned int[m[K
+[2.198s]       |                                                [32m[K%lu[m[K
+[2.203s] In file included from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/logging.hpp:24[m[K,
+[2.203s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/client.hpp:40[m[K,
+[2.203s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/callback_group.hpp:24[m[K,
+[2.203s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/any_executable.hpp:20[m[K,
+[2.203s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategy.hpp:25[m[K,
+[2.203s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategies.hpp:18[m[K,
+[2.203s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executor_options.hpp:20[m[K,
+[2.203s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executor.hpp:37[m[K,
+[2.203s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executors/multi_threaded_executor.hpp:25[m[K,
+[2.204s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executors.hpp:21[m[K,
+[2.204s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:155[m[K,
+[2.204s]                  from [01m[K/home/coordsys/zbx/MVSROS_project/MVS_ROS2/hik_camera/include/hik_camera/hik_camera_driver.hpp:6[m[K,
+[2.204s]                  from [01m[K/home/coordsys/zbx/MVSROS_project/MVS_ROS2/hik_camera/src/hik_camera_driver.cpp:1[m[K:
+[2.204s] [01m[K/home/coordsys/zbx/MVSROS_project/MVS_ROS2/hik_camera/src/hik_camera_driver.cpp:320:21:[m[K [01;35m[Kwarning: [m[Kformat ‘[01m[K%u[m[K’ expects argument of type ‘[01m[Kunsigned int[m[K’, but argument 5 has type ‘[01m[Klong int[m[K’ [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wformat=-Wformat=]8;;[m[K]
+[2.204s]   320 |                     [01;35m[K"Unsupported pixel format: %u"[m[K, [32m[KpFrameInfo->enPixelType[m[K);
+[2.204s]       |                     [01;35m[K^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K  [32m[K~~~~~~~~~~~~~~~~~~~~~~~[m[K
+[2.204s]       |                                                                 [32m[K|[m[K
+[2.204s]       |                                                                 [32m[Klong int[m[K
+[2.204s] [01m[K/home/coordsys/zbx/MVSROS_project/MVS_ROS2/hik_camera/src/hik_camera_driver.cpp:320:49:[m[K [01;36m[Knote: [m[Kformat string is defined here
+[2.204s]   320 |                     "Unsupported pixel format: [01;36m[K%u[m[K", pFrameInfo->enPixelType);
+[2.204s]       |                                                [01;36m[K~^[m[K
+[2.204s]       |                                                 [01;36m[K|[m[K
+[2.204s]       |                                                 [01;36m[Kunsigned int[m[K
+[2.204s]       |                                                [32m[K%lu[m[K
+[2.901s] [ 66%] [32m[1mLinking CXX executable hik_camera_node[0m
+[3.035s] [100%] Built target hik_camera_node
+[3.046s] Invoked command in '/home/coordsys/zbx/MVSROS_project/build/hik_camera' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --build /home/coordsys/zbx/MVSROS_project/build/hik_camera -- -j16 -l16
+[3.057s] Invoking command in '/home/coordsys/zbx/MVSROS_project/build/hik_camera': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --install /home/coordsys/zbx/MVSROS_project/build/hik_camera
+[3.064s] -- Install configuration: ""
+[3.064s] -- Installing: /home/coordsys/zbx/MVSROS_project/install/hik_camera/lib/hik_camera/hik_camera_node
+[3.064s] -- Set runtime path of "/home/coordsys/zbx/MVSROS_project/install/hik_camera/lib/hik_camera/hik_camera_node" to "$ORIGIN/../lib:$ORIGIN/lib:/home/coordsys/zbx/MVSROS_project/MVS_SDK/SDK/lib/64"
+[3.064s] -- Up-to-date: /home/coordsys/zbx/MVSROS_project/install/hik_camera/share/hik_camera/launch
+[3.064s] -- Up-to-date: /home/coordsys/zbx/MVSROS_project/install/hik_camera/share/hik_camera/launch/hik_camera.launch.py
+[3.064s] -- Up-to-date: /home/coordsys/zbx/MVSROS_project/install/hik_camera/share/hik_camera/config
+[3.064s] -- Installing: /home/coordsys/zbx/MVSROS_project/install/hik_camera/share/hik_camera/config/camera_params.yaml
+[3.064s] -- Up-to-date: /home/coordsys/zbx/MVSROS_project/install/hik_camera/share/ament_index/resource_index/package_run_dependencies/hik_camera
+[3.064s] -- Up-to-date: /home/coordsys/zbx/MVSROS_project/install/hik_camera/share/ament_index/resource_index/parent_prefix_path/hik_camera
+[3.065s] -- Up-to-date: /home/coordsys/zbx/MVSROS_project/install/hik_camera/share/hik_camera/environment/ament_prefix_path.sh
+[3.065s] -- Up-to-date: /home/coordsys/zbx/MVSROS_project/install/hik_camera/share/hik_camera/environment/ament_prefix_path.dsv
+[3.065s] -- Up-to-date: /home/coordsys/zbx/MVSROS_project/install/hik_camera/share/hik_camera/environment/path.sh
+[3.065s] -- Up-to-date: /home/coordsys/zbx/MVSROS_project/install/hik_camera/share/hik_camera/environment/path.dsv
+[3.065s] -- Up-to-date: /home/coordsys/zbx/MVSROS_project/install/hik_camera/share/hik_camera/local_setup.bash
+[3.065s] -- Up-to-date: /home/coordsys/zbx/MVSROS_project/install/hik_camera/share/hik_camera/local_setup.sh
+[3.065s] -- Up-to-date: /home/coordsys/zbx/MVSROS_project/install/hik_camera/share/hik_camera/local_setup.zsh
+[3.065s] -- Up-to-date: /home/coordsys/zbx/MVSROS_project/install/hik_camera/share/hik_camera/local_setup.dsv
+[3.065s] -- Installing: /home/coordsys/zbx/MVSROS_project/install/hik_camera/share/hik_camera/package.dsv
+[3.066s] -- Up-to-date: /home/coordsys/zbx/MVSROS_project/install/hik_camera/share/ament_index/resource_index/packages/hik_camera
+[3.066s] -- Up-to-date: /home/coordsys/zbx/MVSROS_project/install/hik_camera/share/hik_camera/cmake/hik_cameraConfig.cmake
+[3.066s] -- Up-to-date: /home/coordsys/zbx/MVSROS_project/install/hik_camera/share/hik_camera/cmake/hik_cameraConfig-version.cmake
+[3.066s] -- Up-to-date: /home/coordsys/zbx/MVSROS_project/install/hik_camera/share/hik_camera/package.xml
+[3.067s] Invoked command in '/home/coordsys/zbx/MVSROS_project/build/hik_camera' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --install /home/coordsys/zbx/MVSROS_project/build/hik_camera
