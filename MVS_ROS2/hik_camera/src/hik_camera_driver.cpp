@@ -169,6 +169,7 @@ bool HikCameraDriver::initialize() {
         // USB 设备获取 SN
         sn = std::string((char*)pDevInfo->SpecialInfo.stUsb3VInfo.chSerialNumber);
         // USB 没有传统 IP，可以留空或设为 "usb"
+        // 这里只考虑了USB接口，因为根据现有条件只能测试USB接口的效果
     }
     else {
         continue; // 忽略其他类型
