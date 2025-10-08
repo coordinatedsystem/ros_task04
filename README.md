@@ -45,6 +45,9 @@ MVSROS_project
 
 编译配置节点
 ---
+
+***首先说明：CmakeLists.txt文件中使用的是include文件夹与MVS_SDK文件的绝对路径，运行前需要手动修改路径以正确链接MVS_SDK的源文件与include文件中的.hpp头文件***
+
 最开始你要打开config/camera_params.yaml,并修改你实际的参数，如果不知道参数可以通过命令行来查找。（这里不多赘述）
 （这里所使用的为zsh。）
 
@@ -131,6 +134,7 @@ ros2 topic echo /image_raw
 会看到一串数字编码，说明相机正在向你的电脑传输图片数据。
 
 在这串数字窗口中，你可以找到图片的详细信息。
+
 
 
 
