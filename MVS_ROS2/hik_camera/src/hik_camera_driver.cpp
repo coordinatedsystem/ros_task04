@@ -1,6 +1,8 @@
 #include "hik_camera/hik_camera_driver.hpp"
 #include <rclcpp/rclcpp.hpp>
 #include <image_transport/image_transport.hpp>
+#include <chrono>
+using namespace std::chrono_literals;
 
 
 static size_t getBitsPerPixel(unsigned int pixelType) {
@@ -30,22 +32,61 @@ rcl_interfaces::msg::SetParametersResult HikCameraDriver::onParameterChange(cons
         if (param.get_name() == "exposure_time") {
             double exp = param.as_double();
             int nRet = MV_CC_SetFloatValue(camera_handle_, "ExposureTime", exp);
-            // 省略错误处理...
+            if (nRet != MV_OK) {
+                result.successful = false;
+                result.reason = "Failed to set ExposureTime: " + std::to_string(exp) + " (error code: " + std::to_string(nRet) + ")";
+                RCLCPP_ERROR(node_->get_logger(), "%s", result.reason.c_str());
+                return result;
+            }
+            RCLCPP_INFO(node_->get_logger(), "Successfully set ExposureTime to %.2f", exp);
+
         } else if (param.get_name() == "gain") {
             double gain = param.as_double();
             int nRet = MV_CC_SetFloatValue(camera_handle_, "Gain", gain);
-            // 省略错误处理...
+            if (nRet != MV_OK) {
+                result.successful = false;
+                result.reason = "Failed to set Gain: " + std::to_string(gain) + " (error code: " + std::to_string(nRet) + ")";
+                RCLCPP_ERROR(node_->get_logger(), "%s", result.reason.c_str());
+                return result;
+            }
+            RCLCPP_INFO(node_->get_logger(), "Successfully set Gain to %.2f", gain);
+
         } else if (param.get_name() == "frame_rate") {
             double fps = param.as_double();
+            int nRet;
+
             if (fps > 0) {
-                MV_CC_SetBoolValue(camera_handle_, "AcquisitionFrameRateEnable", true);
-                MV_CC_SetFloatValue(camera_handle_, "AcquisitionFrameRate", fps);
+                nRet = MV_CC_SetBoolValue(camera_handle_, "AcquisitionFrameRateEnable", true);
+                if (nRet != MV_OK) {
+                    result.successful = false;
+                    result.reason = "Failed to enable AcquisitionFrameRate (error: " + std::to_string(nRet) + ")";
+                    RCLCPP_ERROR(node_->get_logger(), "%s", result.reason.c_str());
+                    return result;
+                }
+
+                nRet = MV_CC_SetFloatValue(camera_handle_, "AcquisitionFrameRate", fps);
+                if (nRet != MV_OK) {
+                    result.successful = false;
+                    result.reason = "Failed to set AcquisitionFrameRate to " + std::to_string(fps) + " (error: " + std::to_string(nRet) + ")";
+                    RCLCPP_ERROR(node_->get_logger(), "%s", result.reason.c_str());
+                    return result;
+                }
+                RCLCPP_INFO(node_->get_logger(), "Successfully set Frame Rate to %.2f fps", fps);
             } else {
-                MV_CC_SetBoolValue(camera_handle_, "AcquisitionFrameRateEnable", false);
+                nRet = MV_CC_SetBoolValue(camera_handle_, "AcquisitionFrameRateEnable", false);
+                if (nRet != MV_OK) {
+                    result.successful = false;
+                    result.reason = "Failed to disable AcquisitionFrameRate (error: " + std::to_string(nRet) + ")";
+                    RCLCPP_ERROR(node_->get_logger(), "%s", result.reason.c_str());
+                    return result;
+                }
+                RCLCPP_INFO(node_->get_logger(), "Frame Rate control disabled.");
             }
+
         } else if (param.get_name() == "pixel_format") {
             std::string fmt = param.as_string();
             int pixelFormat;
+
             if (fmt == "Mono8") {
                 pixelFormat = PixelType_Gvsp_Mono8;
             } else if (fmt == "RGB8") {
@@ -55,16 +96,18 @@ rcl_interfaces::msg::SetParametersResult HikCameraDriver::onParameterChange(cons
             } else {
                 result.successful = false;
                 result.reason = "Unsupported pixel format: " + fmt;
+                RCLCPP_ERROR(node_->get_logger(), "%s", result.reason.c_str());
                 return result;
             }
+
             int nRet = MV_CC_SetEnumValue(camera_handle_, "PixelFormat", pixelFormat);
             if (nRet != MV_OK) {
                 result.successful = false;
-                result.reason = "Failed to set PixelFormat";
+                result.reason = "Failed to set PixelFormat to " + fmt + " (error: " + std::to_string(nRet) + ")";
+                RCLCPP_ERROR(node_->get_logger(), "%s", result.reason.c_str());
                 return result;
-            } else {
-                RCLCPP_INFO(node_->get_logger(), "Set PixelFormat to %s. Restart the camera driver to apply.", fmt.c_str());
             }
+            RCLCPP_INFO(node_->get_logger(), "Set PixelFormat to %s. Restart the camera driver to apply.", fmt.c_str());
         }
     }
 
@@ -92,10 +135,10 @@ HikCameraDriver::HikCameraDriver(std::shared_ptr<rclcpp::Node> node)
     int interval_sec = node_->get_parameter("reconnect_interval").as_int();
 
     // 声明相机控制参数（带默认值）
-    node_->declare_parameter("exposure_time", 10000.0);      // 微秒
-    node_->declare_parameter("gain", 0.0);                   // dB 或 无单位
-    node_->declare_parameter("frame_rate", -1.0);            // -1 表示不限制
-    node_->declare_parameter("pixel_format", "Mono8");       // 支持的格式字符串
+    node_->declare_parameter("exposure_time", 5000.0);      // 微秒
+    node_->declare_parameter("gain", 10.0);                   // dB 或 无单位
+    node_->declare_parameter("frame_rate", 40.0);            // -1 表示不限制
+    node_->declare_parameter("pixel_format", "BGR8");       // 支持的格式字符串
 
     // 创建定时器，定期检查连接状态
     reconnect_timer_ = node_->create_wall_timer(
@@ -138,14 +181,15 @@ bool HikCameraDriver::initialize() {
     }
 
     // 枚举设备
-    MV_CC_DEVICE_INFO_LIST device_list;
-    memset(&device_list, 0, sizeof(device_list));
+    MV_CC_DEVICE_INFO_LIST device_list={0};
+    
     int nRet = MV_CC_EnumDevices(MV_GIGE_DEVICE | MV_USB_DEVICE, &device_list);
     if (nRet != MV_OK || device_list.nDeviceNum == 0) {
         RCLCPP_ERROR(node_->get_logger(), "No devices found");
         return false;
     }
-
+    
+    MV_CC_DEVICE_INFO* selected_dev_info = nullptr;
     // 根据 IP 或 SN 选择设备
     bool found = false;
     for (unsigned int i = 0; i < device_list.nDeviceNum; ++i) {
@@ -251,11 +295,19 @@ bool HikCameraDriver::initialize() {
         RCLCPP_WARN(node_->get_logger(), "Failed to set AcquisitionMode to Continuous");
     }
 
-    // 不限制帧率
-    nRet = MV_CC_SetBoolValue(camera_handle_, "AcquisitionFrameRateEnable", false);
+    nRet = MV_CC_SetBoolValue(camera_handle_, "CounterEventSource", true);
     if (nRet != MV_OK) {
-        RCLCPP_WARN(node_->get_logger(), "Failed to Disable AcquisitionFrameRate");
+        RCLCPP_WARN(node_->get_logger(), "Failed to set CounterEventSource for timestamp");
     }
+
+    // 启用时间戳（确保 Timestamp 已启用）
+    nRet = MV_CC_SetBoolValue(camera_handle_, "GevTimestampControlMode", 1); // 或类似参数
+
+    // 不限制帧率
+    // nRet = MV_CC_SetBoolValue(camera_handle_, "AcquisitionFrameRateEnable", false);
+    // if (nRet != MV_OK) {
+    //     RCLCPP_WARN(node_->get_logger(), "Failed to Disable AcquisitionFrameRate");
+    // }
 
     RCLCPP_INFO(node_->get_logger(), "Camera initialized");
     return true;
@@ -323,7 +375,7 @@ void HikCameraDriver::closeDevice() {
     RCLCPP_INFO(node_->get_logger(), "Device closed");
 }
 
-void __stdcall HikCameraDriver::onImageCallback(unsigned char* pData, MV_FRAME_OUT_INFO_EX* pFrameInfo, void* pUser){
+void __stdcall HikCameraDriver::onImageCallback(unsigned char* pData, MV_FRAME_OUT_INFO_EX* pFrameInfo, void* pUser) {
     HikCameraDriver* driver = static_cast<HikCameraDriver*>(pUser);
     if (!driver || !driver->is_capturing_.load() || !pData || !pFrameInfo) {
         return;
@@ -332,51 +384,131 @@ void __stdcall HikCameraDriver::onImageCallback(unsigned char* pData, MV_FRAME_O
     RCLCPP_DEBUG(rclcpp::get_logger("HikCamera"), "Image received: %dx%d, format=%u", 
                  pFrameInfo->nWidth, pFrameInfo->nHeight, pFrameInfo->enPixelType);
 
+    // 获取硬件时间戳（单位：纳秒）
+    uint64_t current_timestamp_ns = pFrameInfo-> nDevTimeStampLow;
+    if (current_timestamp_ns == 0) {
+        RCLCPP_WARN(driver->node_->get_logger(), "Received frame with zero hardware timestamp.");
+        return;
+    }
+
+    // 获取上次时间戳和帧计数
+    uint64_t last_ts = driver->last_timestamp_ns_.load();
+    int64_t last_log_time = driver->last_print_time_ns_.load();
+
+    // 更新帧计数
+    int frame_cnt = ++driver->frame_count_;
+
+    double estimated_fps = 0.0;
+
+    // 只有当已有上一帧时才计算 delta
+    if (last_ts != 0) {
+        int64_t delta_ns = static_cast<int64_t>(current_timestamp_ns - last_ts);
+        if (delta_ns > 0) {
+            estimated_fps = 1e9 / static_cast<double>(delta_ns); // FPS ≈ 1 / Δt
+        }
+    }
+
+    // 更新最后时间戳
+    driver->last_timestamp_ns_.store(current_timestamp_ns);
+
+    // 判断是否达到日志输出间隔（使用硬件时间）
+    if (current_timestamp_ns - last_log_time >= LOG_INTERVAL_NS) {
+        // 尝试原子地更新打印时间，防止多线程冲突
+        if (driver->last_print_time_ns_.compare_exchange_strong(last_log_time, current_timestamp_ns)) {
+            // 重置帧计数用于下一周期平均帧率估算（可选）
+            int fps_avg = frame_cnt - 1; // 因为这一秒已经过去，总帧数约为本周期内收到的帧
+
+            RCLCPP_INFO(driver->node_->get_logger(),
+                " Camera FPS | HW-Timestamp Based | Instant: %.2f Hz | Avg over last sec: %d Hz",
+                estimated_fps/10, fps_avg/10);
+
+            // 可选：重置帧计数器用于下个周期
+            driver->frame_count_.store(1); // 当前帧计入下一周期
+        }
+    }
+
+    // 创建并发布 ROS 图像消息
     auto msg = std::make_unique<sensor_msgs::msg::Image>();
-    msg->header.stamp = driver->node_->now();
+    msg->header.stamp = driver->node_->now(); // ROS 时间仍用于 ROS 系统同步
     msg->header.frame_id = "camera_frame";
     msg->height = pFrameInfo->nHeight;
     msg->width = pFrameInfo->nWidth;
 
-    // ... encoding 设置 ...
+    switch (pFrameInfo->enPixelType) {
+        case PixelType_Gvsp_Mono8:
+            msg->encoding = sensor_msgs::image_encodings::MONO8;
+            break;
+        case PixelType_Gvsp_Mono10:
+        case PixelType_Gvsp_Mono12:
+            msg->encoding = sensor_msgs::image_encodings::MONO16;
+            break;
+        case PixelType_Gvsp_Mono10_Packed:
+        case PixelType_Gvsp_Mono12_Packed:
+            msg->encoding = "mono12p"; // 或 "mono10p"
+            break;
+        case PixelType_Gvsp_RGB8_Packed:
+            msg->encoding = sensor_msgs::image_encodings::RGB8;
+            break;
+        case PixelType_Gvsp_BGR8_Packed:
+            msg->encoding = sensor_msgs::image_encodings::BGR8;
+            break;
+        default:
+            RCLCPP_WARN(driver->node_->get_logger(), "Unknown pixel format: %u, using MONO8 as fallback", 
+                        static_cast<unsigned int>(pFrameInfo->enPixelType));
+            msg->encoding = sensor_msgs::image_encodings::MONO8;
+            break;
+    }
 
     msg->is_bigendian = 0;
     size_t bits_per_pixel = getBitsPerPixel(pFrameInfo->enPixelType);
     size_t bytes_per_pixel = (bits_per_pixel + 7) / 8;
     msg->step = pFrameInfo->nWidth * bytes_per_pixel;
 
-    size_t data_size = pFrameInfo->nFrameLen;  // 使用 SDK 提供的长度
+    size_t data_size = pFrameInfo->nFrameLen;
     msg->data.resize(data_size);
-    memcpy(msg->data.data(), pData, data_size);  // 安全复制
+    memcpy(msg->data.data(), pData, data_size);
 
     driver->image_pub_.publish(std::move(msg));
 }
 
 void HikCameraDriver::reconnectTimerCallback() {
-    if (is_capturing_.load()) {
-        retry_count_ = 0;
+    static int status_counter = 0;
+    status_counter++;
+
+    // ✅ 每 N 次打印一次状态，避免日志爆炸
+    RCLCPP_INFO(node_->get_logger(), 
+            "🔍 Status Check [count=%d] connected_flag=%d, capturing=%d, handle=%p", 
+            status_counter, is_connected_.load(), is_capturing_.load(), camera_handle_);
+
+    // ✅ 关键：使用 SDK 查询真实连接状态
+    bool sdk_connected = isDeviceConnected();
+
+    if (sdk_connected) {
+        // 设备物理连接正常
+        retry_count_ = 0;  // 重置重试计数
         return;
     }
 
-    RCLCPP_WARN(node_->get_logger(), "Camera not capturing. Attempting reconnect... (attempt %d/%d)", 
+    // 🚨 物理断开！开始重连流程
+    RCLCPP_WARN(node_->get_logger(), "🔴 Camera physically disconnected! Starting reconnection attempt %d/%d", 
                 retry_count_ + 1, max_retries_);
 
-    // 确保完全关闭
-    stopCapture();   // 停止采集
-    closeDevice();   // 关闭设备并销毁句柄
+    // ✅ 确保停止采集并释放资源
+    stopCapture();
+    closeDevice();  // 内部会设置 is_connected_.store(false)
 
-    std::this_thread::sleep_for(std::chrono::milliseconds(100)); // 短暂延迟
+    std::this_thread::sleep_for(std::chrono::milliseconds(100));
 
     if (initialize()) {
         if (startCapture()) {
-            RCLCPP_INFO(node_->get_logger(), "Reconnected and capturing successfully!");
+            RCLCPP_INFO(node_->get_logger(), "🎉 Reconnected and capturing successfully!");
             retry_count_ = 0;
         } else {
-            RCLCPP_ERROR(node_->get_logger(), "Initialized but failed to start capture");
+            RCLCPP_ERROR(node_->get_logger(), "❌ Start capture failed after re-initialization");
             incrementAndCheckRetry();
         }
     } else {
-        RCLCPP_ERROR(node_->get_logger(), "Initialization failed during reconnect");
+        RCLCPP_ERROR(node_->get_logger(), "❌ Re-initialization failed");
         incrementAndCheckRetry();
     }
 }
@@ -399,29 +531,62 @@ void HikCameraDriver::incrementAndCheckRetry() {
     }
 }
 
-void HikCameraDriver::printCameraInfo() {
-    if (!is_connected_) return;
-
-    MVCC_INTVALUE int_value;
-    MVCC_ENUMVALUE enum_value;
-    MVCC_FLOATVALUE float_value;
-
-    // 获取宽度
-    memset(&int_value, 0, sizeof(MVCC_INTVALUE));
-    int nRet = MV_CC_GetIntValue(camera_handle_, "Width", &int_value);
-    if (nRet == MV_OK) {
-        RCLCPP_INFO(node_->get_logger(), "Current Width: %ld", int_value.nCurValue);
-    } else {
-        RCLCPP_WARN(node_->get_logger(), "Failed to get Width: %d", nRet);
+bool HikCameraDriver::isDeviceConnected() {
+    if (!camera_handle_) {
+        RCLCPP_DEBUG(node_->get_logger(), "Camera handle is null. Not connected.");
+        return false;
     }
-    
-    // 获取像素格式
-    memset(&enum_value, 0, sizeof(MVCC_ENUMVALUE));
-    nRet = MV_CC_GetEnumValue(camera_handle_, "PixelFormat", &enum_value);
-    if (nRet == MV_OK) {
-        RCLCPP_INFO(node_->get_logger(), "Current PixelFormat value: %u", enum_value.nCurValue);
+
+    int nRet = MV_CC_IsDeviceConnected(camera_handle_);
+    bool connected = (nRet == 1);
+
+    if (connected) {
+        RCLCPP_DEBUG(node_->get_logger(), "Camera is connected.");
     } else {
-        RCLCPP_WARN(node_->get_logger(), "Failed to get PixelFormat: %d", nRet);
+        RCLCPP_WARN(node_->get_logger(), "⚠️ Camera disconnected or error: %d", nRet);
     }
-  
+
+    return connected;
 }
+// void HikCameraDriver::printCameraInfo() {
+//     if (!is_connected_) return;
+
+//     MVCC_INTVALUE int_value;
+//     MVCC_ENUMVALUE enum_value;
+//     MVCC_FLOATVALUE float_value;
+
+//     // 获取宽度
+//     memset(&int_value, 0, sizeof(MVCC_INTVALUE));
+//     int nRet = MV_CC_GetIntValue(camera_handle_, "Width", &int_value);
+//     if (nRet == MV_OK) {
+//         RCLCPP_INFO(node_->get_logger(), "Current Width: %ld", int_value.nCurValue);
+//     } else {
+//         RCLCPP_WARN(node_->get_logger(), "Failed to get Width: %d", nRet);
+//     }
+    
+//     // 获取像素格式
+//     memset(&enum_value, 0, sizeof(MVCC_ENUMVALUE));
+//     nRet = MV_CC_GetEnumValue(camera_handle_, "PixelFormat", &enum_value);
+//     if (nRet == MV_OK) {
+//         RCLCPP_INFO(node_->get_logger(), "Current PixelFormat value: %u", enum_value.nCurValue);
+//     } else {
+//         RCLCPP_WARN(node_->get_logger(), "Failed to get PixelFormat: %d", nRet);
+//     }
+  
+
+
+// void HikCameraDriver::checkAndUpdateFps() {
+//     if (camera_handle_ == nullptr) return;
+
+//     MVCC_FLOATVALUE resulting, acquisition;
+//     int ret1 = MV_CC_GetFloatValue(camera_handle_, "ResultingFrameRate", &resulting);
+//     int ret2 = MV_CC_GetFloatValue(camera_handle_, "AcquisitionFrameRate", &acquisition);
+
+//     if (ret1 == MV_OK && ret2 == MV_OK) {
+//         RCLCPP_INFO(node_->get_logger(), 
+//             "📊 FPS | Set: %.2f | Actual: %.2f", 
+//             acquisition.fCurValue, resulting.fCurValue);
+//     } else {
+//         RCLCPP_WARN(node_->get_logger(), 
+//             "❌ Failed to get FPS: Resulting=%d, Acquisition=%d", ret1, ret2);
+//     }
