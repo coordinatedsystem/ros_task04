@@ -475,12 +475,12 @@ void HikCameraDriver::reconnectTimerCallback() {
     static int status_counter = 0;
     status_counter++;
 
-    // ✅ 每 N 次打印一次状态，避免日志爆炸
+    //  每 N 次打印一次状态，避免日志爆炸
     RCLCPP_INFO(node_->get_logger(), 
-            "🔍 Status Check [count=%d] connected_flag=%d, capturing=%d, handle=%p", 
+            " Status Check [count=%d] connected_flag=%d, capturing=%d, handle=%p", 
             status_counter, is_connected_.load(), is_capturing_.load(), camera_handle_);
 
-    // ✅ 关键：使用 SDK 查询真实连接状态
+    //  关键：使用 SDK 查询真实连接状态
     bool sdk_connected = isDeviceConnected();
 
     if (sdk_connected) {
@@ -489,11 +489,11 @@ void HikCameraDriver::reconnectTimerCallback() {
         return;
     }
 
-    // 🚨 物理断开！开始重连流程
-    RCLCPP_WARN(node_->get_logger(), "🔴 Camera physically disconnected! Starting reconnection attempt %d/%d", 
+    //  物理断开！开始重连流程
+    RCLCPP_WARN(node_->get_logger(), " Camera physically disconnected! Starting reconnection attempt %d/%d", 
                 retry_count_ + 1, max_retries_);
 
-    // ✅ 确保停止采集并释放资源
+    //  确保停止采集并释放资源
     stopCapture();
     closeDevice();  // 内部会设置 is_connected_.store(false)
 
@@ -501,14 +501,14 @@ void HikCameraDriver::reconnectTimerCallback() {
 
     if (initialize()) {
         if (startCapture()) {
-            RCLCPP_INFO(node_->get_logger(), "🎉 Reconnected and capturing successfully!");
+            RCLCPP_INFO(node_->get_logger(), " Reconnected and capturing successfully!");
             retry_count_ = 0;
         } else {
-            RCLCPP_ERROR(node_->get_logger(), "❌ Start capture failed after re-initialization");
+            RCLCPP_ERROR(node_->get_logger(), " Start capture failed after re-initialization");
             incrementAndCheckRetry();
         }
     } else {
-        RCLCPP_ERROR(node_->get_logger(), "❌ Re-initialization failed");
+        RCLCPP_ERROR(node_->get_logger(), " Re-initialization failed");
         incrementAndCheckRetry();
     }
 }
@@ -543,7 +543,7 @@ bool HikCameraDriver::isDeviceConnected() {
     if (connected) {
         RCLCPP_DEBUG(node_->get_logger(), "Camera is connected.");
     } else {
-        RCLCPP_WARN(node_->get_logger(), "⚠️ Camera disconnected or error: %d", nRet);
+        RCLCPP_WARN(node_->get_logger(), "Camera disconnected or error: %d", nRet);
     }
 
     return connected;
@@ -584,9 +584,9 @@ bool HikCameraDriver::isDeviceConnected() {
 
 //     if (ret1 == MV_OK && ret2 == MV_OK) {
 //         RCLCPP_INFO(node_->get_logger(), 
-//             "📊 FPS | Set: %.2f | Actual: %.2f", 
+//             " FPS | Set: %.2f | Actual: %.2f", 
 //             acquisition.fCurValue, resulting.fCurValue);
 //     } else {
 //         RCLCPP_WARN(node_->get_logger(), 
-//             "❌ Failed to get FPS: Resulting=%d, Acquisition=%d", ret1, ret2);
+//             " Failed to get FPS: Resulting=%d, Acquisition=%d", ret1, ret2);
 //     }
