@@ -51,7 +51,7 @@ MVSROS_project
 首先，先进入到MVSROS_project的目录：
 
 ```
-cd ~/zbx/MVSROS_project/MV
+cd ~/zbx/MVSROS_project
 ```
 
 然后在这里source你的ros2，以我为例:
@@ -71,7 +71,7 @@ source install/setup.zsh
 ```
 colcon build --packages-select hik_camera
 ```
-(这里会弹出一些警告，忽视即可)
+(这里会弹出一些警告，无伤大雅，忽视即可)
 
 最后运行节点：
 
@@ -79,7 +79,15 @@ colcon build --packages-select hik_camera
 ros2 run hik_camera hik_camera_node
 ```
 
-之后节点就会开始运行。
+之后节点就会开始运行,但不会弹出rviz2窗口。这是你需要手动输入参数并且手动打开rviz2。
+
+更好的方法是使用launch文件来运行节点：
+
+```
+ros2 launch hik_camera hik_camera.launch.py
+```
+
+你就可以看到rviz2窗口弹出，接下来你就可以在窗口中点击add，然后by topic/image_raw/image来查看图像。
 
 接收和查看节点
 ---
@@ -97,6 +105,15 @@ ros2 node list
 
 然后查看是否有名为hik_camera的node。
 
+无论你使用的是直接运行节点，还是使用launch文件运行节点，那么你就可以在这个命令行改变参数,如:
+
+```
+ros2 param set /hik_camera camera_sn 00F26632041
+ros2 param set /hik_camera exposure_time 5000.0
+ros2 param set /hik_camera gain 20.0
+ros2 param set /hik_camera frame_rate 10.0
+```
+
 之后查看话题：
 
 ```
@@ -105,7 +122,7 @@ ros2 topic list
 
 然后查看是否有名为image_raw的话题。
 
-这是如果你查看image_raw的话题的话：
+这是如果你监听image_raw的话题的话：
 
 ```
 ros2 topic echo /image_raw
@@ -113,13 +130,8 @@ ros2 topic echo /image_raw
 
 会看到一串数字编码，说明相机正在向你的电脑传输图片数据。
 
-之后在终端输入：
+在这串数字窗口中，你可以找到图片的详细信息。
 
-```
-ros2 run rqt_image_view rqt_image_view
-```
-
-便会弹出一个GUI窗口，只需要在窗口下拉的菜单中找到image_raw的话题然后点击，图像就会实时显示在窗口了。
 
 
 
